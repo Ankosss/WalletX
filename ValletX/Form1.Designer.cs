@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -38,7 +39,7 @@
             this.eur_price_all = new System.Windows.Forms.TextBox();
             this.usd_price_all = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
+            this.saat = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.kur_panel = new System.Windows.Forms.Panel();
@@ -46,9 +47,16 @@
             this.sif_kul = new System.Windows.Forms.TextBox();
             this.ad_kul = new System.Windows.Forms.TextBox();
             this.button5 = new System.Windows.Forms.Button();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.add_cash = new System.Windows.Forms.Panel();
+            this.button4 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
+            this.tb_ekle = new System.Windows.Forms.TextBox();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.kur_panel.SuspendLayout();
             this.kullanici_giris_panel.SuspendLayout();
+            this.add_cash.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -83,11 +91,11 @@
             // 
             // usd_price
             // 
-            this.usd_price.Enabled = false;
             this.usd_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.usd_price.Location = new System.Drawing.Point(229, 276);
             this.usd_price.Multiline = true;
             this.usd_price.Name = "usd_price";
+            this.usd_price.ReadOnly = true;
             this.usd_price.Size = new System.Drawing.Size(150, 40);
             this.usd_price.TabIndex = 5;
             this.usd_price.Text = "1";
@@ -95,11 +103,11 @@
             // 
             // eur_price
             // 
-            this.eur_price.Enabled = false;
             this.eur_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.eur_price.Location = new System.Drawing.Point(229, 331);
             this.eur_price.Multiline = true;
             this.eur_price.Name = "eur_price";
+            this.eur_price.ReadOnly = true;
             this.eur_price.Size = new System.Drawing.Size(150, 40);
             this.eur_price.TabIndex = 6;
             this.eur_price.Text = "1";
@@ -107,11 +115,11 @@
             // 
             // gbp_price
             // 
-            this.gbp_price.Enabled = false;
             this.gbp_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
             this.gbp_price.Location = new System.Drawing.Point(229, 385);
             this.gbp_price.Multiline = true;
             this.gbp_price.Name = "gbp_price";
+            this.gbp_price.ReadOnly = true;
             this.gbp_price.Size = new System.Drawing.Size(150, 40);
             this.gbp_price.TabIndex = 7;
             this.gbp_price.Text = "1";
@@ -123,9 +131,10 @@
             this.gbp_price_all.Location = new System.Drawing.Point(385, 385);
             this.gbp_price_all.Multiline = true;
             this.gbp_price_all.Name = "gbp_price_all";
+            this.gbp_price_all.ReadOnly = true;
             this.gbp_price_all.Size = new System.Drawing.Size(150, 40);
             this.gbp_price_all.TabIndex = 10;
-            this.gbp_price_all.Text = "1";
+            this.gbp_price_all.Text = "-";
             this.gbp_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // eur_price_all
@@ -134,9 +143,10 @@
             this.eur_price_all.Location = new System.Drawing.Point(385, 331);
             this.eur_price_all.Multiline = true;
             this.eur_price_all.Name = "eur_price_all";
+            this.eur_price_all.ReadOnly = true;
             this.eur_price_all.Size = new System.Drawing.Size(150, 40);
             this.eur_price_all.TabIndex = 9;
-            this.eur_price_all.Text = "1";
+            this.eur_price_all.Text = "-";
             this.eur_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // usd_price_all
@@ -145,14 +155,15 @@
             this.usd_price_all.Location = new System.Drawing.Point(385, 276);
             this.usd_price_all.Multiline = true;
             this.usd_price_all.Name = "usd_price_all";
+            this.usd_price_all.ReadOnly = true;
             this.usd_price_all.Size = new System.Drawing.Size(150, 40);
             this.usd_price_all.TabIndex = 8;
-            this.usd_price_all.Text = "1";
+            this.usd_price_all.Text = "-";
             this.usd_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.button3);
+            this.panel1.Controls.Add(this.saat);
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -161,17 +172,15 @@
             this.panel1.Size = new System.Drawing.Size(729, 46);
             this.panel1.TabIndex = 11;
             // 
-            // button3
+            // saat
             // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Left;
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Popup;
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(350, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(175, 46);
-            this.button3.TabIndex = 11;
-            this.button3.Text = "button1";
-            this.button3.UseVisualStyleBackColor = true;
+            this.saat.AutoSize = true;
+            this.saat.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.saat.Location = new System.Drawing.Point(531, 12);
+            this.saat.Name = "saat";
+            this.saat.Size = new System.Drawing.Size(60, 22);
+            this.saat.TabIndex = 12;
+            this.saat.Text = "19:45";
             // 
             // button2
             // 
@@ -182,8 +191,9 @@
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(175, 46);
             this.button2.TabIndex = 11;
-            this.button2.Text = "Cüzdan";
+            this.button2.Text = "Para ekle";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button1
             // 
@@ -209,7 +219,7 @@
             this.kur_panel.Controls.Add(this.usd_price);
             this.kur_panel.Controls.Add(this.gbp_price);
             this.kur_panel.Controls.Add(this.eur_price);
-            this.kur_panel.Location = new System.Drawing.Point(716, 317);
+            this.kur_panel.Location = new System.Drawing.Point(710, 128);
             this.kur_panel.Name = "kur_panel";
             this.kur_panel.Size = new System.Drawing.Size(539, 363);
             this.kur_panel.TabIndex = 12;
@@ -228,7 +238,7 @@
             // sif_kul
             // 
             this.sif_kul.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.sif_kul.Location = new System.Drawing.Point(225, 224);
+            this.sif_kul.Location = new System.Drawing.Point(252, 225);
             this.sif_kul.Multiline = true;
             this.sif_kul.Name = "sif_kul";
             this.sif_kul.Size = new System.Drawing.Size(191, 30);
@@ -239,7 +249,7 @@
             // ad_kul
             // 
             this.ad_kul.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ad_kul.Location = new System.Drawing.Point(225, 182);
+            this.ad_kul.Location = new System.Drawing.Point(252, 183);
             this.ad_kul.Multiline = true;
             this.ad_kul.Name = "ad_kul";
             this.ad_kul.Size = new System.Drawing.Size(191, 30);
@@ -250,7 +260,7 @@
             // button5
             // 
             this.button5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button5.Location = new System.Drawing.Point(260, 311);
+            this.button5.Location = new System.Drawing.Point(283, 281);
             this.button5.Name = "button5";
             this.button5.Size = new System.Drawing.Size(128, 46);
             this.button5.TabIndex = 0;
@@ -258,12 +268,65 @@
             this.button5.UseVisualStyleBackColor = true;
             this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // add_cash
+            // 
+            this.add_cash.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.add_cash.Controls.Add(this.button4);
+            this.add_cash.Controls.Add(this.button3);
+            this.add_cash.Controls.Add(this.tb_ekle);
+            this.add_cash.Controls.Add(this.comboBox1);
+            this.add_cash.Location = new System.Drawing.Point(125, 138);
+            this.add_cash.Name = "add_cash";
+            this.add_cash.Size = new System.Drawing.Size(466, 269);
+            this.add_cash.TabIndex = 15;
+            this.add_cash.Visible = false;
+            // 
+            // button4
+            // 
+            this.button4.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button4.Location = new System.Drawing.Point(421, 3);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(40, 40);
+            this.button4.TabIndex = 3;
+            this.button4.Text = "X";
+            this.button4.UseVisualStyleBackColor = true;
+            // 
+            // button3
+            // 
+            this.button3.Location = new System.Drawing.Point(181, 139);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(87, 39);
+            this.button3.TabIndex = 2;
+            this.button3.Text = "Ekle";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click_1);
+            // 
+            // tb_ekle
+            // 
+            this.tb_ekle.Location = new System.Drawing.Point(145, 88);
+            this.tb_ekle.Name = "tb_ekle";
+            this.tb_ekle.Size = new System.Drawing.Size(165, 22);
+            this.tb_ekle.TabIndex = 1;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(145, 58);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(165, 24);
+            this.comboBox1.TabIndex = 0;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(729, 727);
+            this.Controls.Add(this.add_cash);
             this.Controls.Add(this.kullanici_giris_panel);
             this.Controls.Add(this.kur_panel);
             this.Controls.Add(this.panel1);
@@ -272,10 +335,13 @@
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.kur_panel.ResumeLayout(false);
             this.kur_panel.PerformLayout();
             this.kullanici_giris_panel.ResumeLayout(false);
             this.kullanici_giris_panel.PerformLayout();
+            this.add_cash.ResumeLayout(false);
+            this.add_cash.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -292,7 +358,6 @@
         private System.Windows.Forms.TextBox eur_price_all;
         private System.Windows.Forms.TextBox usd_price_all;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel kur_panel;
@@ -300,6 +365,13 @@
         private System.Windows.Forms.TextBox sif_kul;
         private System.Windows.Forms.TextBox ad_kul;
         private System.Windows.Forms.Button button5;
+        private System.Windows.Forms.Label saat;
+        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Panel add_cash;
+        private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.TextBox tb_ekle;
+        private System.Windows.Forms.ComboBox comboBox1;
     }
 }
 

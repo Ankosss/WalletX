@@ -29,6 +29,7 @@ namespace ValletX
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            mysqlbaglan.Open();
             site = "http://www.tcmb.gov.tr/kurlar/today.xml";
             xml_create();
 
@@ -58,6 +59,8 @@ namespace ValletX
                 kur_panel.Visible = true;
                 kur_panel.Dock = DockStyle.Fill;
                 kur_durum = true;
+                bakiye_getir(usd_price_all, eur_price_all, gbp_price_all);
+
             }
         }
         private void button5_Click(object sender, EventArgs e)
@@ -68,38 +71,44 @@ namespace ValletX
         }
         public void giris_kontrol(string ad, string sif)
         {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand();
+                mysqlbaglan.Open();
+                cmd.Connection = mysqlbaglan;
+                cmd.CommandText = "SELECT * FROM kullanici_bilgi where kul_ad='" + ad + "' AND kul_sif='" + sif + "'";
+                MySqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    kul_sicil = int.Parse(dr[0].ToString());
+                    MessageBox.Show("bağlantı başarılı: " + kul_sicil);
+                    kullanici_giris_panel.Dock = DockStyle.None;
+                    kullanici_giris_panel.Visible = false;
+                }
+                else
+                {
+                    MessageBox.Show("Kullanıcı adı ya da şifre yanlış");
+                }
+                dr.Close();
+                timer1.Start();
 
-            MySqlCommand cmd = new MySqlCommand();
-            mysqlbaglan.Open();
-            cmd.Connection = mysqlbaglan;
-            cmd.CommandText = "SELECT * FROM kullanici_bilgi where kul_ad='" + ad + "' AND kul_sif='" + sif + "'";
-            MySqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
-            {
-                kul_sicil = int.Parse(dr[0].ToString());
-                MessageBox.Show("bağlantı başarılı: " + kul_sicil);
-                kullanici_giris_panel.Dock = DockStyle.None;
-                kullanici_giris_panel.Visible = false;
             }
-            else
+            catch (Exception)
             {
-                MessageBox.Show("Kullanıcı adı ya da şifre yanlış");
+                mysqlbaglan.Close();
             }
-            dr.Close();
-            mysqlbaglan.Close();
-            timer1.Start();
+           
+            
         }
         public void baglantı()
         {
             try
             {
-                mysqlbaglan.Open();
                 if (mysqlbaglan.State != ConnectionState.Closed) { }
                 else
                 {
                     MessageBox.Show("Maalesef Bağlantı Yapılamadı...!");
                 }
-                mysqlbaglan.Close();
             }
             catch (Exception err)
             {
@@ -109,15 +118,18 @@ namespace ValletX
         }
         public void kur_guncelle(int id, string kur)
         {
-            mysqlbaglan.Open();
 
-            MySqlCommand cmd = new MySqlCommand("update tur_bilgi set tur_kur=@kur where tur_id=@id", mysqlbaglan);
-            cmd.Parameters.AddWithValue("@id", id);
-            cmd.Parameters.AddWithValue("@kur", kur);
-            cmd.ExecuteNonQuery();
-
-            mysqlbaglan.Close();
-
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("update tur_bilgi set tur_kur=@kur where tur_id=@id", mysqlbaglan);
+                cmd.Parameters.AddWithValue("@id", id);
+                cmd.Parameters.AddWithValue("@kur", kur);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+                mysqlbaglan.Close();
+            }
         }
         public void xml_create()
         {
@@ -142,19 +154,24 @@ namespace ValletX
                 kur_guncelle(2, eur);
                 kur_guncelle(3, gbp);
                 kur_goster();
+                bakiye_getir(usd_price_all,eur_price_all,gbp_price_all);
             }
         }
-
         public void add_gold(int kul_id, int tur_id, int bak)
         {
-            mysqlbaglan.Open();
-            MySqlCommand cmd = new MySqlCommand("insert into bakiye_bilgi (kul_id,tur_id,bak_miktar) values (@kul_id,@tur_id,@miktar)", mysqlbaglan);
-            cmd.Parameters.AddWithValue("@kul_id", kul_id);
-            cmd.Parameters.AddWithValue("@tur_id", tur_id);
-            cmd.Parameters.AddWithValue("@miktar", bak);
-            cmd.ExecuteNonQuery();
-            mysqlbaglan.Close();
-            MessageBox.Show("Paranız başarılı bir şekilde eklendi");
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("insert into bakiye_bilgi (kul_id,tur_id,bak_miktar) values (@kul_id,@tur_id,@miktar)", mysqlbaglan);
+                cmd.Parameters.AddWithValue("@kul_id", kul_id);
+                cmd.Parameters.AddWithValue("@tur_id", tur_id);
+                cmd.Parameters.AddWithValue("@miktar", bak);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Paranız başarılı bir şekilde eklendi");
+            }
+            catch (Exception)
+            {
+                mysqlbaglan.Close();
+            }
         }
         private void button4_Click(object sender, EventArgs e)
         {
@@ -165,42 +182,84 @@ namespace ValletX
             if (add_cash.Visible == false) add_cash.Visible = true;
             else add_cash.Visible = false;
         }
-
         public void add_combobox()
         {
-            mysqlbaglan.Open();
-
-
-            MySqlCommand cmd = new MySqlCommand("Select tur_kisa from tur_bilgi", mysqlbaglan);
-            MySqlDataReader dr = cmd.ExecuteReader();
-
-            while (dr.Read())
+            try
             {
-                comboBox1.Items.Add(dr[0].ToString());
+                MySqlCommand cmd = new MySqlCommand("Select tur_kisa from tur_bilgi", mysqlbaglan);
+                MySqlDataReader dr = cmd.ExecuteReader();
+
+                while (dr.Read())
+                {
+                    comboBox1.Items.Add(dr[0].ToString());
+                }
+                dr.Close();
             }
+            catch (Exception)
+            {
 
-            mysqlbaglan.Close();
+                mysqlbaglan.Close();
+            }
         }
-
         private void button3_Click_1(object sender, EventArgs e)
         {
-            int bak_id = 0;
-            mysqlbaglan.Open();
-
-            MySqlCommand cmd = new MySqlCommand("Select tur_id from tur_bilgi where tur_kisa=@kisa", mysqlbaglan);
-            cmd.Parameters.AddWithValue("@kisa", comboBox1.Text.ToString());
-            MySqlDataReader dr = cmd.ExecuteReader();
-            if (dr.Read())
+            try
             {
-                bak_id = int.Parse(dr[0].ToString());
+                int bak_id = 0;
+
+                MySqlCommand cmd = new MySqlCommand("Select tur_id from tur_bilgi where tur_kisa=@kisa", mysqlbaglan);
+                cmd.Parameters.AddWithValue("@kisa", comboBox1.Text.ToString());
+                MySqlDataReader dr = cmd.ExecuteReader();
+                if (dr.Read())
+                {
+                    bak_id = int.Parse(dr[0].ToString());
+                }
+                dr.Close();
+                MessageBox.Show("bilgi alındı" + bak_id.ToString());
+                int miktar = int.Parse(tb_ekle.Text.ToString());
+                add_gold(kul_sicil, bak_id, miktar);
+
             }
-            dr.Close();
-            mysqlbaglan.Close();
-            MessageBox.Show("bilgi alındı" + bak_id.ToString());
-            int miktar = int.Parse(tb_ekle.Text.ToString());
-            add_gold(kul_sicil, bak_id, miktar);
-            
+            catch (Exception)
+            {
+                mysqlbaglan.Close();
+            }
         }
+
+        public void bakiye_getir(TextBox usd,TextBox eur,TextBox gbp)
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT tur_id, SUM(bak_miktar) FROM `bakiye_bilgi` WHERE kul_id=@id GROUP BY tur_id ", mysqlbaglan);
+                cmd.Parameters.AddWithValue("@id", kul_sicil);
+                MySqlDataReader dr = cmd.ExecuteReader();
+                int a = 0;
+                while (dr.Read())
+                {
+                    a++;
+                    if (a == 1)
+                    {
+                        usd.Text = dr[1].ToString();
+                    }
+                    else if (a == 2)
+                    {
+                        eur.Text = dr[1].ToString();
+                    }
+                    else if (a == 3)
+                    {
+                        gbp.Text = dr[1].ToString();
+                    }
+                    else a = 0;
+                }
+
+                dr.Close();
+            }
+            catch (Exception)
+            {
+                mysqlbaglan.Close();
+            }
+        }
+
     }
 }
 

@@ -219,9 +219,9 @@
             this.kur_panel.Controls.Add(this.usd_price);
             this.kur_panel.Controls.Add(this.gbp_price);
             this.kur_panel.Controls.Add(this.eur_price);
-            this.kur_panel.Location = new System.Drawing.Point(710, 128);
+            this.kur_panel.Location = new System.Drawing.Point(710, 52);
             this.kur_panel.Name = "kur_panel";
-            this.kur_panel.Size = new System.Drawing.Size(539, 363);
+            this.kur_panel.Size = new System.Drawing.Size(640, 509);
             this.kur_panel.TabIndex = 12;
             // 
             // kullanici_giris_panel
@@ -279,7 +279,7 @@
             this.add_cash.Controls.Add(this.button3);
             this.add_cash.Controls.Add(this.tb_ekle);
             this.add_cash.Controls.Add(this.comboBox1);
-            this.add_cash.Location = new System.Drawing.Point(125, 138);
+            this.add_cash.Location = new System.Drawing.Point(125, 195);
             this.add_cash.Name = "add_cash";
             this.add_cash.Size = new System.Drawing.Size(466, 269);
             this.add_cash.TabIndex = 15;

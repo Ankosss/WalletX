@@ -53,6 +53,9 @@
             this.button3 = new System.Windows.Forms.Button();
             this.tb_ekle = new System.Windows.Forms.TextBox();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.have_usd = new System.Windows.Forms.TextBox();
+            this.have_eur = new System.Windows.Forms.TextBox();
+            this.have_gbp = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.kur_panel.SuspendLayout();
             this.kullanici_giris_panel.SuspendLayout();
@@ -63,7 +66,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label1.Location = new System.Drawing.Point(105, 276);
+            this.label1.Location = new System.Drawing.Point(33, 218);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 36);
             this.label1.TabIndex = 2;
@@ -73,7 +76,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(105, 331);
+            this.label2.Location = new System.Drawing.Point(33, 273);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(82, 36);
             this.label2.TabIndex = 3;
@@ -83,7 +86,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.label3.Location = new System.Drawing.Point(105, 385);
+            this.label3.Location = new System.Drawing.Point(33, 327);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(81, 36);
             this.label3.TabIndex = 4;
@@ -92,11 +95,11 @@
             // usd_price
             // 
             this.usd_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usd_price.Location = new System.Drawing.Point(229, 276);
+            this.usd_price.Location = new System.Drawing.Point(157, 218);
             this.usd_price.Multiline = true;
             this.usd_price.Name = "usd_price";
             this.usd_price.ReadOnly = true;
-            this.usd_price.Size = new System.Drawing.Size(150, 40);
+            this.usd_price.Size = new System.Drawing.Size(125, 40);
             this.usd_price.TabIndex = 5;
             this.usd_price.Text = "1";
             this.usd_price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -104,11 +107,11 @@
             // eur_price
             // 
             this.eur_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.eur_price.Location = new System.Drawing.Point(229, 331);
+            this.eur_price.Location = new System.Drawing.Point(157, 273);
             this.eur_price.Multiline = true;
             this.eur_price.Name = "eur_price";
             this.eur_price.ReadOnly = true;
-            this.eur_price.Size = new System.Drawing.Size(150, 40);
+            this.eur_price.Size = new System.Drawing.Size(125, 40);
             this.eur_price.TabIndex = 6;
             this.eur_price.Text = "1";
             this.eur_price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -116,11 +119,11 @@
             // gbp_price
             // 
             this.gbp_price.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.gbp_price.Location = new System.Drawing.Point(229, 385);
+            this.gbp_price.Location = new System.Drawing.Point(157, 327);
             this.gbp_price.Multiline = true;
             this.gbp_price.Name = "gbp_price";
             this.gbp_price.ReadOnly = true;
-            this.gbp_price.Size = new System.Drawing.Size(150, 40);
+            this.gbp_price.Size = new System.Drawing.Size(125, 40);
             this.gbp_price.TabIndex = 7;
             this.gbp_price.Text = "1";
             this.gbp_price.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -128,11 +131,11 @@
             // gbp_price_all
             // 
             this.gbp_price_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.gbp_price_all.Location = new System.Drawing.Point(385, 385);
+            this.gbp_price_all.Location = new System.Drawing.Point(288, 327);
             this.gbp_price_all.Multiline = true;
             this.gbp_price_all.Name = "gbp_price_all";
             this.gbp_price_all.ReadOnly = true;
-            this.gbp_price_all.Size = new System.Drawing.Size(150, 40);
+            this.gbp_price_all.Size = new System.Drawing.Size(125, 40);
             this.gbp_price_all.TabIndex = 10;
             this.gbp_price_all.Text = "-";
             this.gbp_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -140,11 +143,11 @@
             // eur_price_all
             // 
             this.eur_price_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
-            this.eur_price_all.Location = new System.Drawing.Point(385, 331);
+            this.eur_price_all.Location = new System.Drawing.Point(288, 273);
             this.eur_price_all.Multiline = true;
             this.eur_price_all.Name = "eur_price_all";
             this.eur_price_all.ReadOnly = true;
-            this.eur_price_all.Size = new System.Drawing.Size(150, 40);
+            this.eur_price_all.Size = new System.Drawing.Size(125, 40);
             this.eur_price_all.TabIndex = 9;
             this.eur_price_all.Text = "-";
             this.eur_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -152,11 +155,11 @@
             // usd_price_all
             // 
             this.usd_price_all.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.usd_price_all.Location = new System.Drawing.Point(385, 276);
+            this.usd_price_all.Location = new System.Drawing.Point(288, 218);
             this.usd_price_all.Multiline = true;
             this.usd_price_all.Name = "usd_price_all";
             this.usd_price_all.ReadOnly = true;
-            this.usd_price_all.Size = new System.Drawing.Size(150, 40);
+            this.usd_price_all.Size = new System.Drawing.Size(125, 40);
             this.usd_price_all.TabIndex = 8;
             this.usd_price_all.Text = "-";
             this.usd_price_all.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -210,6 +213,9 @@
             // 
             // kur_panel
             // 
+            this.kur_panel.Controls.Add(this.have_gbp);
+            this.kur_panel.Controls.Add(this.have_eur);
+            this.kur_panel.Controls.Add(this.have_usd);
             this.kur_panel.Controls.Add(this.gbp_price_all);
             this.kur_panel.Controls.Add(this.label1);
             this.kur_panel.Controls.Add(this.label2);
@@ -219,9 +225,9 @@
             this.kur_panel.Controls.Add(this.usd_price);
             this.kur_panel.Controls.Add(this.gbp_price);
             this.kur_panel.Controls.Add(this.eur_price);
-            this.kur_panel.Location = new System.Drawing.Point(710, 52);
+            this.kur_panel.Location = new System.Drawing.Point(710, 114);
             this.kur_panel.Name = "kur_panel";
-            this.kur_panel.Size = new System.Drawing.Size(640, 509);
+            this.kur_panel.Size = new System.Drawing.Size(579, 435);
             this.kur_panel.TabIndex = 12;
             // 
             // kullanici_giris_panel
@@ -279,7 +285,7 @@
             this.add_cash.Controls.Add(this.button3);
             this.add_cash.Controls.Add(this.tb_ekle);
             this.add_cash.Controls.Add(this.comboBox1);
-            this.add_cash.Location = new System.Drawing.Point(125, 195);
+            this.add_cash.Location = new System.Drawing.Point(125, 176);
             this.add_cash.Name = "add_cash";
             this.add_cash.Size = new System.Drawing.Size(466, 269);
             this.add_cash.TabIndex = 15;
@@ -319,6 +325,42 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(165, 24);
             this.comboBox1.TabIndex = 0;
+            // 
+            // have_usd
+            // 
+            this.have_usd.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.have_usd.Location = new System.Drawing.Point(419, 218);
+            this.have_usd.Multiline = true;
+            this.have_usd.Name = "have_usd";
+            this.have_usd.ReadOnly = true;
+            this.have_usd.Size = new System.Drawing.Size(125, 40);
+            this.have_usd.TabIndex = 11;
+            this.have_usd.Text = "-";
+            this.have_usd.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // have_eur
+            // 
+            this.have_eur.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.have_eur.Location = new System.Drawing.Point(419, 273);
+            this.have_eur.Multiline = true;
+            this.have_eur.Name = "have_eur";
+            this.have_eur.ReadOnly = true;
+            this.have_eur.Size = new System.Drawing.Size(125, 40);
+            this.have_eur.TabIndex = 12;
+            this.have_eur.Text = "-";
+            this.have_eur.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // have_gbp
+            // 
+            this.have_gbp.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Bold);
+            this.have_gbp.Location = new System.Drawing.Point(419, 327);
+            this.have_gbp.Multiline = true;
+            this.have_gbp.Name = "have_gbp";
+            this.have_gbp.ReadOnly = true;
+            this.have_gbp.Size = new System.Drawing.Size(125, 40);
+            this.have_gbp.TabIndex = 13;
+            this.have_gbp.Text = "-";
+            this.have_gbp.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // Form1
             // 
@@ -372,6 +414,9 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.TextBox tb_ekle;
         private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.TextBox have_gbp;
+        private System.Windows.Forms.TextBox have_eur;
+        private System.Windows.Forms.TextBox have_usd;
     }
 }
 

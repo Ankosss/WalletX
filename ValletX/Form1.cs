@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -60,6 +61,7 @@ namespace ValletX
                 kur_panel.Dock = DockStyle.Fill;
                 kur_durum = true;
                 bakiye_getir(usd_price_all, eur_price_all, gbp_price_all);
+                all_hesapla();
 
             }
         }
@@ -97,8 +99,8 @@ namespace ValletX
             {
                 mysqlbaglan.Close();
             }
-           
-            
+
+
         }
         public void baglantı()
         {
@@ -154,7 +156,8 @@ namespace ValletX
                 kur_guncelle(2, eur);
                 kur_guncelle(3, gbp);
                 kur_goster();
-                bakiye_getir(usd_price_all,eur_price_all,gbp_price_all);
+                bakiye_getir(usd_price_all, eur_price_all, gbp_price_all);
+                all_hesapla();
             }
         }
         public void add_gold(int kul_id, int tur_id, int bak)
@@ -225,8 +228,7 @@ namespace ValletX
                 mysqlbaglan.Close();
             }
         }
-
-        public void bakiye_getir(TextBox usd,TextBox eur,TextBox gbp)
+        public void bakiye_getir(TextBox usd, TextBox eur, TextBox gbp)
         {
             try
             {
@@ -259,7 +261,18 @@ namespace ValletX
                 mysqlbaglan.Close();
             }
         }
-
+        public void hesapla(float kur, TextBox have, TextBox all)
+        {
+            float _have = float.Parse(have.Text.ToString());
+            float _all = kur * _have;
+            all.Text = _all+"";
+        }
+        public void all_hesapla()
+        {
+            hesapla(float.Parse(usd, CultureInfo.InvariantCulture.NumberFormat), usd_price_all, have_usd);
+            hesapla(float.Parse(eur, CultureInfo.InvariantCulture.NumberFormat), eur_price_all, have_eur);
+            hesapla(float.Parse(gbp, CultureInfo.InvariantCulture.NumberFormat), gbp_price_all, have_gbp);
+        }
     }
 }
 

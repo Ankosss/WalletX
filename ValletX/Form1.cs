@@ -30,6 +30,7 @@ namespace ValletX
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            
             mysqlbaglan.Open();
             site = "http://www.tcmb.gov.tr/kurlar/today.xml";
             xml_create();
@@ -44,6 +45,8 @@ namespace ValletX
             timer1.Interval = 1000;
 
             add_combobox();
+            
+
         }
 
         bool kur_durum = false;
@@ -70,6 +73,7 @@ namespace ValletX
             string kul_ad = ad_kul.Text.ToString();
             string kul_sif = sif_kul.Text.ToString();
             giris_kontrol(kul_ad, kul_sif);
+            
         }
         public void giris_kontrol(string ad, string sif)
         {
@@ -158,6 +162,7 @@ namespace ValletX
                 kur_goster();
                 bakiye_getir(usd_price_all, eur_price_all, gbp_price_all);
                 all_hesapla();
+                grid_aktar();
             }
         }
         public void add_gold(int kul_id, int tur_id, int bak)
@@ -272,6 +277,24 @@ namespace ValletX
             hesapla(float.Parse(usd, CultureInfo.InvariantCulture.NumberFormat), usd_price_all, have_usd);
             hesapla(float.Parse(eur, CultureInfo.InvariantCulture.NumberFormat), eur_price_all, have_eur);
             hesapla(float.Parse(gbp, CultureInfo.InvariantCulture.NumberFormat), gbp_price_all, have_gbp);
+        }
+
+        public void grid_aktar()
+        {
+            try
+            {
+                MySqlCommand cmd = new MySqlCommand("SELECT tur_bilgi.tur_ad as 'Tür', SUM(bak_miktar) as 'Miktar' FROM `bakiye_bilgi` INNER JOIN tur_bilgi on bakiye_bilgi.tur_id=tur_bilgi.tur_id WHERE bakiye_bilgi.kul_id=@id GROUP BY tur_bilgi.tur_id;", mysqlbaglan);
+                cmd.Parameters.AddWithValue("@id", kul_sicil);
+                MySqlDataAdapter adapter = new MySqlDataAdapter(cmd);
+                DataSet ds = new DataSet();
+                adapter.Fill(ds, "bakiye_bilgi");
+                dataGridView1.DataSource = ds.Tables["bakiye_bilgi"];
+                
+            }
+            catch (Exception)
+            {
+                mysqlbaglan.Close();
+            }
         }
     }
 }
